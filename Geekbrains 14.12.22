@@ -48,3 +48,17 @@ for i in values:
 
 print(max - min)
 
+4.
+#Напишите программу, которая будет преобразовывать десятичное число в двоичное.
+#Пример:
+#    - 45 -> 101101
+#    - 3 -> 11
+#    - 2 -> 10
+
+num = int(input("please insert a number: "))
+stroka = ''
+while num > 0:
+    ostatok = num % 2
+    num = num // 2
+    stroka = str(ostatok) + stroka
+print(stroka)
