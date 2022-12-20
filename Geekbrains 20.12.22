@@ -54,3 +54,32 @@ for i in N:
         s.discard(i)
 Y = list(s)
 print(Y)
+
+
+4.
+#Задана натуральная степень k. Сформировать случайным образом список коэффициентов (значения от 0 до 100)* многочлена и записать в файл многочлен степени k.#
+#    *Пример:*
+#    - k=2 => 2*x² + 4*x + 5 = 0 или x² + 5 = 0 или 10*x² = 0
+#    -  k=5 => 2*x^5 + 4*x^4 + 2*x^3 + 2*x^2 + 4*x + 5 = 0
+import random
+k = int(input("Введите натуральную степень к: "))
+N = 0
+my_string = ""
+znak = "+"
+for i in range(k, -1, -1):
+    N = random.randint(-100, 100)
+    stroka = str(N)
+    if stroka[0] == "-":
+        znak = "-"
+    else:
+        znak = "+"
+    if i == 0:
+        my_string += f' {znak} {abs(N)} = 0'
+    elif i == k:
+        my_string += f' {N}X^{i}'
+    elif i == 1:
+        my_string += f' {znak} {abs(N)}X'
+    elif N != 0 :
+        my_string += f' {znak} {abs(N)}X^{i}'
+
+print(my_string)
