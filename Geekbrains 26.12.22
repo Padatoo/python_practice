@@ -1,0 +1,52 @@
+#Создайте программу для игры с конфетами человек против человека.
+#Условие задачи: На столе лежит 100 конфета.
+# Играют два игрока делая ход друг после друга. Первый ход определяется жеребьёвкой.
+# За один ход можно забрать не более чем 28 конфет. Все конфеты оппонента достаются сделавшему последний ход.
+# Сколько конфет нужно взять первому игроку, чтобы забрать все конфеты у своего конкурента?
+#a) Добавьте игру против бота
+#b) Подумайте как наделить бота ""интеллектом""
+
+#игра против человека
+totalSweets=101
+
+def CheckEnteredNumber(number):
+    try:
+        int(number)
+        return True
+    except ValueError:
+        return False
+
+def GetScore(candiesAmount,turn):
+    while True:
+        if CheckEnteredNumber(candiesAmount):
+            candiesAmount=int(candiesAmount)
+            if 0<candiesAmount<=28:
+                return candiesAmount
+            else:
+                print("Check your input, it must be integer [1...28].")
+                candiesAmount=input(f"Player {turn} turn. Enter number of candies. It should be in range [1...28]: ")
+        else:
+            print("Check your input, it must be integer [1...28].")
+            candiesAmount=input(f"Player {turn} turn. Enter number of candies. It should be in range [1...28]: ")
+
+
+def Game(candiesNum):
+    print("Player 1 the first.")
+    turnFlag=1
+
+    while candiesNum>0:
+        print(f"{candiesNum} candies left.")
+        if turnFlag==1:
+            candiesAmount=GetScore(input(f"Player {turnFlag} turn. Enter number of candies. It should be in range [1...28]: "),turnFlag)
+            turnFlag=2
+        else:
+            candiesAmount=GetScore(input(f"Player {turnFlag} turn. Enter number of candies. It should be in range [1...28]: "),turnFlag)
+            turnFlag=1
+        candiesNum=candiesNum-candiesAmount
+    return turnFlag
+
+winName=Game(totalSweets)
+if winName==2:
+        print("Player 1 is winner!")
+else:
+        print("Player 2 is winner!")
